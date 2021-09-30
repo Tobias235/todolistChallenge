@@ -1,0 +1,34 @@
+.todos {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 33px;
+}
+
+.todoContainer {
+  margin-bottom: 27px;
+  display: flex;
+  flex-direction: row;
+}
+
+.todos input {
+  min-width: 24px;
+  min-height: 24px;
+  border: 1px solid #828282;
+  margin: 0;
+}
+
+.todos p {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.checked {
+  text-decoration-line: line-through;
+}
+
+.todoContainer div {
+  width: 100%;
+  text-align: end;
+}
