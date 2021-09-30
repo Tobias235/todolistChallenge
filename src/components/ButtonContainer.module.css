@@ -10,6 +10,15 @@
   border-radius: 4px 4px;
 }
 
+.todoHeaderBtns:focus {
+  border-bottom: 4px solid #2f80ed;
+  border-radius: 4px 4px;
+}
+
 .borderBottom {
   border: 1px solid #bdbdbd;
+}
+
+.active {
+  border-bottom: 4px solid #2f80ed;
 }

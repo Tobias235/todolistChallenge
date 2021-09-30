@@ -32,3 +32,17 @@
   width: 100%;
   text-align: end;
 }
+
+.buttonContainer {
+  display: flex;
+  justify-content: end;
+}
+
+.deleteAll {
+  width: 124px;
+  height: 40px;
+  background-color: #eb5757;
+  color: white;
+  border-radius: 4px;
+  border: none;
+}

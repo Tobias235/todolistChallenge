@@ -8,6 +8,7 @@ import styles from "./TodoList.module.css";
 const todosLocal = "react-todo-list-todos";
 
 const TodoList = () => {
+  const [completeIsActive, setCompleteIsActive] = useState(false);
   const [todos, setTodos] = useState([]);
   const [filterTodos, setFilterTodos] = useState([]);
 
@@ -23,14 +24,15 @@ const TodoList = () => {
     // fires when todos array gets updated
     localStorage.setItem(todosLocal, JSON.stringify(todos));
     setFilterTodos(todos);
+    setCompleteIsActive(false);
   }, [todos]);
 
-  function addTodo(todo) {
+  const addTodo = (todo) => {
     // adds new todo to beginning of todos array
     setTodos([todo, ...todos]);
-  }
+  };
 
-  function toggleComplete(id) {
+  const toggleComplete = (id, e) => {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
@@ -43,25 +45,32 @@ const TodoList = () => {
       })
     );
     localStorage.setItem(todosLocal, JSON.stringify(todos));
-  }
+  };
 
-  function removeTodo(id) {
+  const removeTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
-  }
+  };
+
+  const removeTodos = () => {
+    setTodos(todos.filter((todo) => !todo.completed));
+  };
 
   const todosFilter = (e) => {
     const button = e.currentTarget.innerHTML;
     const localStorageTodos = JSON.parse(localStorage.getItem(todosLocal));
     if (button === "Active") {
+      setCompleteIsActive(false);
       setFilterTodos(
         localStorageTodos.filter((todo) => todo.completed === false)
       );
     } else if (button === "Completed") {
+      setCompleteIsActive(true);
       setFilterTodos(
         localStorageTodos.filter((todo) => todo.completed === true)
       );
     } else {
       setFilterTodos(localStorageTodos);
+      setCompleteIsActive(false);
     }
   };
 
@@ -73,6 +82,8 @@ const TodoList = () => {
         todos={filterTodos}
         toggleComplete={toggleComplete}
         removeTodo={removeTodo}
+        removeTodos={removeTodos}
+        completeActive={completeIsActive}
       />
     </div>
   );

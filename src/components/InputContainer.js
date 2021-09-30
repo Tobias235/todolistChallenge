@@ -11,14 +11,11 @@ const InputContainer = ({ addTodo }) => {
   });
 
   function handleTaskInputChange(e) {
-    // e.target.value contains new input from onChange
-    // event for input elements
     setTodo({ ...todo, task: e.target.value });
   }
 
   function handleSubmit(e) {
-    e.preventDefault(); // prevents browser refresh
-    // trim() gets rid of string whitespace
+    e.preventDefault();
     if (todo.task.trim()) {
       addTodo({ ...todo, id: Math.random().toString() });
       setTodo({ ...todo, task: "" });

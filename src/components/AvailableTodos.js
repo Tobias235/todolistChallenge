@@ -1,16 +1,28 @@
 import styles from "./AvailableTodos.module.css";
-
-const AvailableTodos = ({ todos, toggleComplete, removeTodo }) => {
-  function handleCheckboxClick(e) {
+import Button from "./Buttons";
+const AvailableTodos = ({
+  todos,
+  toggleComplete,
+  removeTodo,
+  removeTodos,
+  completeActive,
+}) => {
+  const handleCheckboxClick = (e) => {
     const id = e.currentTarget.getAttribute("value");
     toggleComplete(id);
-  }
+  };
 
-  function handleRemoveClick(e) {
+  const handleRemoveClick = (e) => {
     const id =
       e.currentTarget.parentElement.parentElement.getAttribute("value");
     removeTodo(id);
-  }
+  };
+
+  const handleRemoveAllTodos = (e) => {
+    const id =
+      e.currentTarget.parentElement.parentElement.getAttribute("value");
+    removeTodos(id);
+  };
 
   return (
     <div className={styles.todos}>
@@ -35,12 +47,21 @@ const AvailableTodos = ({ todos, toggleComplete, removeTodo }) => {
             {todo.task}
           </p>
           <div>
-            <span onClick={handleRemoveClick} className="material-icons">
-              delete_outline
-            </span>
+            {completeActive && (
+              <span onClick={handleRemoveClick} className="material-icons">
+                delete_outline
+              </span>
+            )}
           </div>
         </div>
       ))}
+      {completeActive && (
+        <div className={styles.buttonContainer}>
+          <Button className={styles.deleteAll} onClick={handleRemoveAllTodos}>
+            Delete All
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
