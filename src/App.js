@@ -1,16 +1,12 @@
+import Footer from "./components/Footer";
 import TodoList from "./components/TodoList";
+import styles from "./App.module.scss";
 function App() {
   return (
     <div>
-      <h1>#Todo</h1>
+      <h1 className={styles.title}>#Todo</h1>
       <TodoList />
-      <footer>
-        <p>
-          created by{" "}
-          <a href="https://devchallenges.io/portfolio/Tobias235">Tobias235</a> -
-          devChallenges.io
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 }
