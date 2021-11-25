@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import FilterBtns from "./FilterBtns";
-import AvailableTodos from "./Todos";
+import Todos from "./Todos";
 import AddTodo from "./AddTodo";
 
 import styles from "./TodoList.module.scss";
@@ -10,7 +10,7 @@ const TodoList = () => {
   const [tab, setTab] = useState("All");
 
   useEffect(() => {
-    const todolist = JSON.parse(localStorage.getItem("todos"));
+    let todolist = JSON.parse(localStorage.getItem("todos"));
     if (todolist) {
       setTodos(todolist);
     }
@@ -19,7 +19,7 @@ const TodoList = () => {
     <div className={styles.todoListContainer}>
       <FilterBtns tab={tab} setTab={setTab} />
       {tab !== "Completed" && <AddTodo todos={todos} setTodos={setTodos} />}
-      <AvailableTodos todos={todos} tab={tab} setTodos={setTodos} />
+      <Todos todos={todos} tab={tab} setTodos={setTodos} />
     </div>
   );
 };

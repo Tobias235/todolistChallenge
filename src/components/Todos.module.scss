@@ -31,4 +31,10 @@
       text-align: end;
     }
   }
+  .text {
+    text-align: center;
+    span {
+      text-transform: lowercase;
+    }
+  }
 }

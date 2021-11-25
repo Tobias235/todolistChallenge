@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import styles from "./Todos.module.scss";
 import DeleteBtn from "./DeleteBtn";
-const AvailableTodos = ({ todos, setTodos, tab }) => {
+
+const SetTodos = ({ todos, setTodos, tab }) => {
   const [filter, setFilter] = useState([]);
+
   const handleCheckboxClick = (e) => {
     const id = Number(e.currentTarget.getAttribute("value"));
     setTodos(
@@ -45,6 +47,8 @@ const AvailableTodos = ({ todos, setTodos, tab }) => {
     todoFilter();
   }, [tab, todos]);
 
+  const btn = tab === "Completed" && filter.length !== 0 ? true : false;
+
   return (
     <div className={styles.todos}>
       {filter.map((todo) => (
@@ -70,9 +74,9 @@ const AvailableTodos = ({ todos, setTodos, tab }) => {
           )}
         </div>
       ))}
-      {tab === "Completed" && <DeleteBtn onClick={handleRemoveTodo} />}
+      {btn && <DeleteBtn onClick={handleRemoveTodo} />}
     </div>
   );
 };
 
-export default AvailableTodos;
+export default SetTodos;
